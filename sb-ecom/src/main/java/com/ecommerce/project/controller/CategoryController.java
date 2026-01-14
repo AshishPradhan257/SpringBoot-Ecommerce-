@@ -1,6 +1,5 @@
 package com.ecommerce.project.controller;
 
-
 import com.ecommerce.project.model.Category;
 import com.ecommerce.project.service.CategoryService;
 import org.jspecify.annotations.Nullable;
@@ -20,22 +19,22 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    //@GetMapping("/api/public/categories")
-    @RequestMapping(value = "/public/categories", method = RequestMethod.GET)
+    @GetMapping("/api/public/categories")
+    //@RequestMapping(value = "/public/categories", method = RequestMethod.GET)
     public ResponseEntity<List<Category>> getAllCategories(){
         List<Category> categories = categoryService.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    //@PostMapping("/api/public/categories")
-    @RequestMapping(value = "/public/categories", method = RequestMethod.POST)
+    @PostMapping("/api/public/categories")
+    //@RequestMapping(value = "/public/categories", method = RequestMethod.POST)
     public ResponseEntity<String> createCategory(@RequestBody Category category){
         categoryService.createCategory(category);
         return new ResponseEntity<>("Category added successfully", HttpStatus.CREATED);
     }
 
-    //@DeleteMapping("/api/admin/categories/{categoryId}")
-    @RequestMapping(value = "/admin/categories/{categoryId}", method = RequestMethod.DELETE)
+    @DeleteMapping("/api/admin/categories/{categoryId}")
+    //@RequestMapping(value = "/admin/categories/{categoryId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId){
         try {
             String status = categoryService.deleteCategory(categoryId);
@@ -47,8 +46,8 @@ public class CategoryController {
         }
     }
 
-    //@PutMapping("/api/public/categories/{categoryId}")
-    @RequestMapping(value = "/public/categories/{categoryId}", method = RequestMethod.PUT)
+    @PutMapping("/api/public/categories/{categoryId}")
+    //@RequestMapping(value = "/public/categories/{categoryId}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateCategory(@RequestBody Category category, @PathVariable Long categoryId){
         try{
             Category savedCategory = categoryService.updateCategory(category, categoryId);
